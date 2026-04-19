@@ -1,0 +1,69 @@
+---
+import SectionShell from '@/components/ui/SectionShell.astro';
+import { SERVICES } from '@/data/site';
+
+const SERVICE_ICONS: Record<string, string> = {
+  'software-development': `<path d="M2 10l3-6 2 4 2-2 3 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>`,
+  'ai-integration': `<path d="M6 2v4l-3 3 3 3v4M10 2v4l3 3-3 3v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>`,
+  'technical-consulting': `<circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M10 10l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>`,
+};
+---
+
+<SectionShell
+  eyebrow="How we can help"
+  heading="Services and products."
+  subheading="We work on both sides — delivering for clients and building our own tools. Here's what you can engage us for today."
+  id="services"
+>
+  <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+    <!-- Services -->
+    {SERVICES.map((service, i) => (
+      <a
+        href="/contact"
+        class="group flex flex-col bg-bg-2 border border-border rounded-xl p-5 hover:border-accent-3/40 hover:-translate-y-0.5 transition-all duration-mid"
+        data-reveal
+        data-delay={String(i + 1) as "1" | "2" | "3"}
+      >
+        <div class="w-8 h-8 rounded-md bg-accent-3/10 border border-accent-3/20 flex items-center justify-center mb-3">
+          <svg width="14" height="14" viewBox="0 0 12 12" fill="none" class="text-accent-3" aria-hidden="true">
+            <path set:html={SERVICE_ICONS[service.id]} />
+          </svg>
+        </div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-sm font-semibold text-text-1">{service.name}</span>
+          <span class="chip chip-cyan text-[10px] py-0.5 px-1.5">Service</span>
+        </div>
+        <p class="text-xs text-text-3 leading-relaxed flex-1 mb-3">{service.description}</p>
+        <span class="text-xs font-medium text-accent-3 group-hover:text-accent-2 transition-colors duration-fast">
+          Get in touch →
+        </span>
+      </a>
+    ))}
+
+    <!-- AI Readiness Audit product card -->
+    <div
+      class="flex flex-col bg-bg-2 border border-accent-1/30 rounded-xl p-5"
+      data-reveal
+      data-delay="4"
+    >
+      <div class="w-8 h-8 rounded-md bg-accent-1/10 border border-accent-1/20 flex items-center justify-center mb-3">
+        <svg width="14" height="14" viewBox="0 0 12 12" fill="none" class="text-accent-1" aria-hidden="true">
+          <path d="M6 1a5 5 0 100 10A5 5 0 006 1zm0 2v3l2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="flex items-center justify-between mb-2">
+        <span class="text-sm font-semibold text-text-1">AI Readiness Audit</span>
+        <span class="chip chip-success text-[10px] py-0.5 px-1.5">Product</span>
+      </div>
+      <p class="text-xs text-text-3 leading-relaxed flex-1 mb-3">
+        Free, instant website audit for AI visibility and crawlability. No signup needed.
+      </p>
+      <a
+        href="/products/ai-readiness"
+        class="text-xs font-medium text-accent-1 hover:text-accent-2 transition-colors duration-fast"
+      >
+        See the product →
+      </a>
+    </div>
+  </div>
+</SectionShell>

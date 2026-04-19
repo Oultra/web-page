@@ -1,0 +1,56 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Terms of Service"
+  description="Oultra terms of service — the rules governing your use of Oultra products and services."
+  canonical="/terms"
+>
+  <section class="pt-32 pb-24">
+    <div class="container max-w-3xl">
+      <div class="mb-12">
+        <h1 class="text-4xl font-bold text-text-1 tracking-tight mb-3">Terms of Service</h1>
+        <p class="text-sm text-text-3">Last updated: April 2026</p>
+      </div>
+
+      <div class="space-y-10">
+        {[
+          {
+            heading: 'Acceptance of terms',
+            body: 'By accessing or using any Oultra product or service, you agree to be bound by these terms. If you do not agree, do not use our services.',
+          },
+          {
+            heading: 'Use of services',
+            body: 'You may use Oultra products for lawful purposes only. You agree not to misuse our services, attempt to circumvent rate limits, or use our infrastructure for purposes other than those described.',
+          },
+          {
+            heading: 'Intellectual property',
+            body: 'All content, software, and materials provided by Oultra are owned by Oultra or its licensors. You may not reproduce, modify, or redistribute them without written permission.',
+          },
+          {
+            heading: 'Disclaimer of warranties',
+            body: 'Our services are provided "as is" without warranty of any kind. We do not guarantee that audit results are complete, accurate, or suitable for any particular purpose. Use results as one input among many.',
+          },
+          {
+            heading: 'Limitation of liability',
+            body: 'To the maximum extent permitted by law, Oultra shall not be liable for any indirect, incidental, or consequential damages arising from your use of our services.',
+          },
+          {
+            heading: 'Changes to these terms',
+            body: 'We may update these terms from time to time. Continued use of our services after changes constitutes acceptance of the updated terms.',
+          },
+          {
+            heading: 'Contact',
+            body: 'For questions about these terms, contact us at contact@oultra.dev.',
+          },
+        ].map(section => (
+          <div class="border-t border-border pt-8 first:border-0 first:pt-0">
+            <h2 class="text-lg font-semibold text-text-1 mb-3">{section.heading}</h2>
+            <p class="text-text-2 leading-relaxed">{section.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

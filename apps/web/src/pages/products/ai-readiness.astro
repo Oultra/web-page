@@ -1,0 +1,235 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SectionShell from '@/components/ui/SectionShell.astro';
+import ScoreBreakdown from '@/components/motion/ScoreBreakdown';
+import { AUDIT_CATEGORIES, TOP_ISSUES, FAQ_ITEMS, EXAMPLE_SCORE } from '@/data/products';
+import { softwareAppJsonLd } from '@/lib/seo';
+---
+
+<BaseLayout
+  title="AI Readiness Audit"
+  description="Structured website audit across six categories: metadata, structured data, content quality, performance, accessibility, and crawlability. Free, instant, no signup."
+  canonical="/products/ai-readiness"
+  jsonLd={softwareAppJsonLd()}
+>
+  <!-- Product hero -->
+  <section class="pt-32 pb-20 relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <div class="absolute inset-0 bg-grid opacity-30" />
+      <div
+        class="absolute inset-0"
+        style="background: radial-gradient(ellipse 60% 50% at 30% 30%, rgba(37,99,235,0.12) 0%, transparent 60%);"
+      />
+    </div>
+
+    <div class="container relative">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <!-- Left: copy -->
+        <div>
+          <div class="flex items-center gap-2 mb-5">
+            <span class="chip chip-blue">Product</span>
+            <span class="chip chip-success">Available now</span>
+          </div>
+
+          <h1 class="text-4xl md:text-5xl font-bold text-text-1 tracking-tight leading-[1.05] mb-5">
+            AI Readiness Audit
+          </h1>
+
+          <p class="text-text-2 text-lg leading-relaxed mb-8 max-w-lg">
+            Measure how visible, structured, and machine-readable your website really is. Get a scored breakdown across six categories — and a prioritized list of fixes.
+          </p>
+
+          <div class="flex flex-wrap gap-3 mb-8">
+            <a
+              href="https://aireadiness.oultra.dev"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white bg-accent-1 hover:bg-blue-500 rounded-md transition-all duration-fast shadow-[0_0_24px_rgba(37,99,235,0.35)] hover:shadow-[0_0_32px_rgba(37,99,235,0.5)] hover:-translate-y-px"
+            >
+              Start free audit
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+
+          <ul class="flex flex-wrap gap-3" aria-label="Key features">
+            {['Free', 'No signup', 'Under 60 seconds', '30+ checks'].map(f => (
+              <li class="chip chip-cyan">{f}</li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Right: URL input mockup -->
+        <div class="bg-bg-2 border border-border rounded-xl overflow-hidden" data-reveal data-delay="1">
+          <div class="flex items-center gap-2 px-4 py-3 border-b border-border bg-bg-1/60">
+            <div class="flex gap-1.5" aria-hidden="true">
+              <span class="w-2.5 h-2.5 rounded-full bg-danger/60" />
+              <span class="w-2.5 h-2.5 rounded-full bg-warning/60" />
+              <span class="w-2.5 h-2.5 rounded-full bg-success/60" />
+            </div>
+            <span class="ml-2 text-[11px] font-mono text-text-3">aireadiness.oultra.dev</span>
+          </div>
+          <div class="p-6">
+            <p class="text-xs text-text-3 mb-3">Paste any public URL to begin</p>
+            <div class="flex items-center gap-2 bg-bg-0 border border-border-strong rounded-md px-3 py-2.5 mb-4">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="shrink-0 text-text-3" aria-hidden="true">
+                <path d="M7 1a6 6 0 100 12A6 6 0 007 1zm0 0v12M1 7h12M2.5 3.5C3.5 5 5 6 7 6s3.5-1 4.5-2.5M2.5 10.5C3.5 9 5 8 7 8s3.5 1 4.5 2.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+              </svg>
+              <span class="text-sm font-mono text-text-3">https://yourwebsite.com</span>
+            </div>
+            <a
+              href="https://aireadiness.oultra.dev"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center justify-center gap-2 w-full py-2.5 text-sm font-semibold text-white bg-accent-1 hover:bg-blue-500 rounded-md transition-colors duration-fast"
+            >
+              Run Audit
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What the audit checks -->
+  <SectionShell
+    eyebrow="What it checks"
+    heading="Thirty-plus checks. Six scoring categories."
+    subheading="Each check targets a specific signal that AI crawlers, LLMs, and search engines use to understand and rank your content."
+  >
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+      {AUDIT_CATEGORIES.map((cat, i) => (
+        <div
+          class="bg-bg-2 border border-border rounded-xl p-5 hover:border-border-strong transition-colors duration-mid"
+          data-reveal
+          data-delay={String(Math.min(i + 1, 5)) as "1" | "2" | "3" | "4" | "5"}
+        >
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-sm font-semibold text-text-1">{cat.name}</h3>
+            <span class="font-mono text-xs font-bold text-accent-2">{cat.score}</span>
+          </div>
+          <div class="score-bar-track mb-3">
+            <div
+              class={`score-bar-fill ${cat.score >= 80 ? 'bg-gradient-to-r from-success to-accent-2' : cat.score >= 60 ? 'bg-gradient-to-r from-accent-1 to-accent-2' : 'bg-gradient-to-r from-warning to-accent-1'}`}
+              style={`width: ${cat.score}%`}
+            />
+          </div>
+          <p class="text-xs text-text-3 leading-relaxed mb-3">{cat.description}</p>
+          <ul class="space-y-1" role="list">
+            {cat.checks.map(check => (
+              <li class="flex items-center gap-2 text-xs text-text-3">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" class="text-accent-1 shrink-0" aria-hidden="true">
+                  <path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                {check}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </SectionShell>
+
+  <!-- Example result -->
+  <SectionShell
+    eyebrow="Example result"
+    heading="A complete score breakdown."
+  >
+    <div class="bg-bg-2 border border-border rounded-xl p-6 md:p-8" data-reveal>
+      <ScoreBreakdown
+        client:visible
+        total={EXAMPLE_SCORE.total}
+        categories={EXAMPLE_SCORE.categories}
+      />
+    </div>
+  </SectionShell>
+
+  <!-- Prioritized fixes -->
+  <SectionShell
+    eyebrow="Prioritized fixes"
+    heading="Not a report card. An action plan."
+    subheading="Every issue is ranked by impact, with a plain-language explanation of why it matters and what to do about it."
+  >
+    <div class="space-y-4" data-reveal>
+      {TOP_ISSUES.map((issue, i) => (
+        <div class="flex items-start gap-4 p-5 bg-bg-2 border border-border rounded-xl hover:border-border-strong transition-colors duration-mid">
+          <div class="flex items-center justify-center w-7 h-7 rounded-full bg-bg-3 border border-border-strong shrink-0 mt-0.5">
+            <span class="text-xs font-mono font-bold text-text-2">{String(i + 1).padStart(2, '0')}</span>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-start gap-2 mb-1 flex-wrap">
+              <h3 class="text-sm font-semibold text-text-1">{issue.title}</h3>
+              <span
+                class={`chip text-[10px] py-0.5 px-2 ${issue.severity === 'high' ? 'chip-danger' : issue.severity === 'medium' ? 'chip-warning' : 'chip-blue'}`}
+              >
+                {issue.severity === 'high' ? 'High impact' : 'Medium impact'}
+              </span>
+            </div>
+            <p class="text-xs text-text-3 leading-relaxed">{issue.detail}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </SectionShell>
+
+  <!-- FAQ -->
+  <SectionShell
+    eyebrow="FAQ"
+    heading="Common questions."
+    align="center"
+  >
+    <div class="max-w-2xl mx-auto space-y-2" data-reveal>
+      {FAQ_ITEMS.map(item => (
+        <details class="group bg-bg-2 border border-border rounded-xl overflow-hidden">
+          <summary class="flex items-center justify-between gap-4 px-5 py-4 cursor-pointer text-sm font-medium text-text-1 hover:bg-bg-3 transition-colors duration-fast list-none">
+            {item.question}
+            <svg
+              width="16" height="16" viewBox="0 0 16 16" fill="none"
+              class="shrink-0 text-text-3 transition-transform duration-fast group-open:rotate-180"
+              aria-hidden="true"
+            >
+              <path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </summary>
+          <div class="px-5 pb-4 pt-1 text-sm text-text-2 leading-relaxed border-t border-border">
+            {item.answer}
+          </div>
+        </details>
+      ))}
+    </div>
+  </SectionShell>
+
+  <!-- CTA -->
+  <section class="py-24">
+    <div class="container">
+      <div class="relative overflow-hidden text-center bg-bg-2 border border-border rounded-2xl py-16 px-8" data-reveal>
+        <div
+          class="absolute inset-0 pointer-events-none"
+          aria-hidden="true"
+          style="background: radial-gradient(ellipse 60% 80% at 50% 0%, rgba(37,99,235,0.15) 0%, transparent 60%);"
+        />
+        <div class="relative max-w-md mx-auto">
+          <h2 class="text-3xl font-bold text-text-1 tracking-tight mb-4">
+            Ready to audit your site?
+          </h2>
+          <p class="text-text-2 mb-8">Free, instant, no account required.</p>
+          <a
+            href="https://aireadiness.oultra.dev"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-semibold text-white bg-accent-1 hover:bg-blue-500 rounded-md transition-all duration-fast shadow-[0_0_28px_rgba(37,99,235,0.4)] hover:shadow-[0_0_40px_rgba(37,99,235,0.55)] hover:-translate-y-px"
+          >
+            Start free audit
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,56 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Privacy Policy"
+  description="Oultra privacy policy — how we handle data and protect your information."
+  canonical="/privacy"
+>
+  <section class="pt-32 pb-24">
+    <div class="container max-w-3xl">
+      <div class="mb-12">
+        <h1 class="text-4xl font-bold text-text-1 tracking-tight mb-3">Privacy Policy</h1>
+        <p class="text-sm text-text-3">Last updated: April 2026</p>
+      </div>
+
+      <div class="prose-section space-y-10">
+        {[
+          {
+            heading: 'Overview',
+            body: 'Oultra ("we", "our", "us") is committed to protecting your privacy. This policy explains what information we collect, how we use it, and your rights regarding your data.',
+          },
+          {
+            heading: 'Information we collect',
+            body: 'When you use AI Readiness Audit, we process the URL you provide to run the audit. We do not store personal information beyond what is necessary to deliver the service. We may collect basic usage analytics (such as audit counts) to improve the product.',
+          },
+          {
+            heading: 'How we use information',
+            body: 'We use the information you provide solely to deliver audit results and improve our products. We do not sell your data to third parties or use it for advertising purposes.',
+          },
+          {
+            heading: 'Cookies and tracking',
+            body: 'This website uses minimal cookies required for site functionality. We do not use advertising trackers or third-party retargeting.',
+          },
+          {
+            heading: 'Data retention',
+            body: 'Audit results may be temporarily cached to improve performance. We do not permanently store audit results tied to identifiable users unless you explicitly create an account.',
+          },
+          {
+            heading: 'Your rights',
+            body: 'You have the right to request deletion of any data we hold about you. To exercise this right, contact us at contact@oultra.dev.',
+          },
+          {
+            heading: 'Contact',
+            body: 'For privacy-related questions, contact us at contact@oultra.dev.',
+          },
+        ].map(section => (
+          <div class="border-t border-border pt-8 first:border-0 first:pt-0">
+            <h2 class="text-lg font-semibold text-text-1 mb-3">{section.heading}</h2>
+            <p class="text-text-2 leading-relaxed">{section.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

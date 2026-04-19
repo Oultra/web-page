@@ -1,0 +1,182 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SectionShell from '@/components/ui/SectionShell.astro';
+import { SERVICES } from '@/data/site';
+---
+
+<BaseLayout
+  title="Company"
+  description="Oultra is a software consultancy. We build custom software, integrate AI, and ship our own tools. Practical code, real outcomes."
+  canonical="/company"
+>
+  <!-- Page hero -->
+  <section class="pt-32 pb-20 relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <div class="absolute inset-0 bg-grid opacity-30" />
+      <div
+        class="absolute inset-0"
+        style="background: radial-gradient(ellipse 60% 50% at 20% 30%, rgba(99,102,241,0.1) 0%, transparent 60%);"
+      />
+    </div>
+    <div class="container relative max-w-3xl">
+      <span class="chip chip-blue mb-5 inline-flex">Company</span>
+      <h1 class="text-4xl md:text-5xl font-bold text-text-1 tracking-tight leading-[1.05] mb-6">
+        We build software that works.
+      </h1>
+      <p class="text-text-2 text-xl leading-relaxed">
+        Oultra is a software consultancy. We design, build, and ship custom software for clients — and we also build and maintain our own products. Based in Latin America, working globally.
+      </p>
+    </div>
+  </section>
+
+  <!-- Mission + approach -->
+  <SectionShell>
+    <div class="grid md:grid-cols-2 gap-16 items-start">
+      <div data-reveal>
+        <h2 class="text-2xl font-bold text-text-1 tracking-tight mb-5">What we do</h2>
+        <p class="text-text-2 leading-relaxed mb-5">
+          We work with founders, product teams, and engineering leads on custom software development, AI integration, and technical consulting. We write production-grade code and deliver real outcomes — not slide decks.
+        </p>
+        <p class="text-text-2 leading-relaxed mb-5">
+          We also build and ship our own software products. AI Readiness Audit is the first — a structured, free audit tool for website machine-readability. More products are in development.
+        </p>
+        <p class="text-text-2 leading-relaxed">
+          Building our own tools keeps us sharp. We think like product developers because we are product developers.
+        </p>
+      </div>
+
+      <div data-reveal data-delay="1">
+        <h2 class="text-2xl font-bold text-text-1 tracking-tight mb-5">How we work</h2>
+        <ul class="space-y-5" role="list">
+          {[
+            {
+              title: 'Specific over general',
+              body: 'We don\'t build platforms that solve everything poorly. We solve your problem well.',
+            },
+            {
+              title: 'Measurable over vague',
+              body: 'Every project has clear deliverables and defined outcomes. No ambiguous "ongoing engagements".',
+            },
+            {
+              title: 'Direct communication',
+              body: 'You talk to the people writing the code. No account managers, no handoff overhead.',
+            },
+          ].map(item => (
+            <li class="flex gap-4">
+              <div class="w-1 min-h-[2rem] bg-gradient-to-b from-accent-1 to-accent-3 rounded-full shrink-0 mt-1" aria-hidden="true" />
+              <div>
+                <h3 class="text-sm font-semibold text-text-1 mb-1">{item.title}</h3>
+                <p class="text-sm text-text-2 leading-relaxed">{item.body}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </SectionShell>
+
+  <!-- Services -->
+  <section class="py-24 bg-bg-1/50 border-y border-border" id="services">
+    <div class="container">
+      <div class="mb-12" data-reveal>
+        <span class="chip chip-cyan mb-4 inline-flex">Services</span>
+        <h2 class="text-3xl font-bold text-text-1 tracking-tight mb-4">What you can hire us for.</h2>
+        <p class="text-text-2 text-lg max-w-xl">
+          We take on projects of all sizes, from small integrations to full product builds. Here's where we focus.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        {SERVICES.map((service, i) => (
+          <div
+            class="bg-bg-2 border border-border rounded-xl p-6 hover:border-border-strong transition-colors duration-mid"
+            data-reveal
+            data-delay={String(i + 1) as "1" | "2" | "3"}
+          >
+            <h3 class="text-base font-semibold text-text-1 mb-2">{service.name}</h3>
+            <p class="text-sm text-text-2 leading-relaxed mb-4">{service.description}</p>
+            <a
+              href="/contact"
+              class="inline-flex items-center gap-1.5 text-sm font-medium text-accent-1 hover:text-accent-2 transition-colors duration-fast"
+            >
+              Get in touch
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                <path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Products we ship -->
+  <SectionShell>
+    <div class="mb-12" data-reveal>
+      <span class="chip chip-blue mb-4 inline-flex">Our products</span>
+      <h2 class="text-3xl font-bold text-text-1 tracking-tight mb-4">We also build for ourselves.</h2>
+      <p class="text-text-2 text-lg max-w-xl">
+        Beyond client work, we develop and maintain our own software products.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-5" data-reveal data-delay="1">
+      <div class="bg-bg-2 border border-accent-1/30 rounded-xl p-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-base font-semibold text-text-1">AI Readiness Audit</span>
+          <span class="chip chip-success">Live</span>
+        </div>
+        <p class="text-sm text-text-2 leading-relaxed mb-4">
+          Structured audit across six categories — metadata, structured data, content quality, performance, accessibility, and crawlability. Free, instant, no account needed.
+        </p>
+        <div class="flex gap-3">
+          <a
+            href="https://aireadiness.oultra.dev"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-sm font-medium text-accent-1 hover:text-accent-2 transition-colors duration-fast"
+          >
+            Try it →
+          </a>
+          <a
+            href="/products/ai-readiness"
+            class="text-sm font-medium text-text-3 hover:text-text-2 transition-colors duration-fast"
+          >
+            Learn more
+          </a>
+        </div>
+      </div>
+
+      <div class="bg-bg-2/50 border border-border rounded-xl p-6 opacity-70">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-base font-semibold text-text-2">More products</span>
+          <span class="chip chip-cyan">In development</span>
+        </div>
+        <p class="text-sm text-text-3 leading-relaxed">
+          We're building additional tools in the AI and developer tooling space. Follow us for updates.
+        </p>
+      </div>
+    </div>
+  </SectionShell>
+
+  <!-- Contact CTA -->
+  <section class="py-24">
+    <div class="container text-center max-w-xl">
+      <div data-reveal>
+        <h2 class="text-2xl font-bold text-text-1 tracking-tight mb-4">Ready to start a project?</h2>
+        <p class="text-text-2 mb-8">
+          Tell us what you're building. We'll tell you how we can help.
+        </p>
+        <a
+          href="/contact"
+          class="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white bg-accent-1 hover:bg-blue-500 rounded-md transition-colors duration-fast"
+        >
+          Start a project
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

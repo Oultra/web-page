@@ -1,0 +1,64 @@
+---
+interface Props {
+  name: string;
+  description: string;
+  href: string;
+  badge?: string;
+  status?: 'live' | 'coming-soon';
+  class?: string;
+}
+
+const {
+  name,
+  description,
+  href,
+  badge,
+  status = 'live',
+  class: className = '',
+} = Astro.props;
+
+const isComingSoon = status === 'coming-soon';
+---
+
+<div
+  class={`
+    group relative flex flex-col bg-bg-2 border border-border rounded-xl p-6 transition-all duration-mid
+    ${isComingSoon ? 'opacity-60' : 'hover:border-accent-1/30 hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(0,0,0,0.3)]'}
+    ${className}
+  `}
+>
+  <!-- Glow on hover (live cards only) -->
+  {!isComingSoon && (
+    <div class="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-mid pointer-events-none bg-[radial-gradient(ellipse_at_0%_0%,rgba(37,99,235,0.08),transparent_60%)]" />
+  )}
+
+  <div class="relative">
+    <div class="flex items-start justify-between mb-3">
+      <div class="flex items-center gap-2 flex-wrap">
+        <span class="text-base font-semibold text-text-1">{name}</span>
+        {badge && (
+          <span class="chip chip-blue">{badge}</span>
+        )}
+        {isComingSoon && (
+          <span class="chip chip-cyan">Coming soon</span>
+        )}
+      </div>
+    </div>
+
+    <p class="text-sm text-text-2 leading-relaxed mb-5">{description}</p>
+
+    {!isComingSoon ? (
+      <a
+        href={href}
+        class="inline-flex items-center gap-1.5 text-sm font-medium text-accent-1 hover:text-accent-2 transition-colors duration-fast group/link"
+      >
+        View product
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" class="transition-transform duration-fast group-hover/link:translate-x-0.5">
+          <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    ) : (
+      <span class="text-sm text-text-3">In development</span>
+    )}
+  </div>
+</div>

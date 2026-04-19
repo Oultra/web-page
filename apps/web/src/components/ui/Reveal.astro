@@ -1,0 +1,18 @@
+---
+interface Props {
+  delay?: 0 | 1 | 2 | 3 | 4 | 5;
+  class?: string;
+  tag?: string;
+}
+
+const { delay = 0, class: className = '', tag = 'div' } = Astro.props;
+const Tag = tag as keyof HTMLElementTagNameMap;
+---
+
+<Tag
+  data-reveal
+  data-delay={delay || undefined}
+  class={className}
+>
+  <slot />
+</Tag>

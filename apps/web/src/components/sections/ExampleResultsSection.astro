@@ -1,0 +1,43 @@
+---
+import SectionShell from '@/components/ui/SectionShell.astro';
+import ScoreBreakdown from '@/components/motion/ScoreBreakdown';
+import { EXAMPLE_SCORE, TOP_ISSUES } from '@/data/products';
+---
+
+<SectionShell
+  eyebrow="Example results"
+  heading="A scored breakdown you can act on."
+  subheading="Every audit surfaces a ranked list of improvements, each tied to a specific category and impact level."
+>
+  <div class="bg-bg-2 border border-border rounded-xl p-6 md:p-8" data-reveal>
+    <!-- Score breakdown (React island) -->
+    <ScoreBreakdown
+      client:visible
+      total={EXAMPLE_SCORE.total}
+      categories={EXAMPLE_SCORE.categories}
+    />
+
+    <!-- Top issues -->
+    <div class="mt-8 pt-8 border-t border-border">
+      <h3 class="text-xs font-mono text-text-3 uppercase tracking-wider mb-4">Top Priority Issues</h3>
+      <ul class="space-y-3" role="list">
+        {TOP_ISSUES.map(issue => (
+          <li class="flex items-start gap-3 p-3.5 bg-bg-1 border border-border rounded-lg">
+            <span
+              class={`
+                mt-0.5 shrink-0 chip text-[10px] py-0.5 px-2 leading-none
+                ${issue.severity === 'high' ? 'chip-danger' : issue.severity === 'medium' ? 'chip-warning' : 'chip-blue'}
+              `}
+            >
+              {issue.severity.toUpperCase()}
+            </span>
+            <div>
+              <p class="text-sm font-medium text-text-1">{issue.title}</p>
+              <p class="text-xs text-text-3 mt-0.5">{issue.detail}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</SectionShell>

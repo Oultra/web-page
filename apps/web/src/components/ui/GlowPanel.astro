@@ -1,0 +1,31 @@
+---
+interface Props {
+  class?: string;
+  glow?: 'blue' | 'cyan' | 'indigo' | 'none';
+  border?: boolean;
+}
+
+const {
+  class: className = '',
+  glow = 'blue',
+  border = true,
+} = Astro.props;
+
+const glowStyles: Record<string, string> = {
+  blue: 'before:bg-[radial-gradient(ellipse_at_50%_0%,rgba(37,99,235,0.18),transparent_70%)]',
+  cyan: 'before:bg-[radial-gradient(ellipse_at_50%_0%,rgba(6,182,212,0.15),transparent_70%)]',
+  indigo: 'before:bg-[radial-gradient(ellipse_at_50%_0%,rgba(99,102,241,0.15),transparent_70%)]',
+  none: '',
+};
+---
+
+<div
+  class={`
+    relative overflow-hidden bg-bg-2 rounded-xl
+    ${border ? 'border border-border' : ''}
+    ${glow !== 'none' ? 'before:absolute before:inset-0 before:pointer-events-none ' + glowStyles[glow] : ''}
+    ${className}
+  `}
+>
+  <slot />
+</div>

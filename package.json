@@ -1,0 +1,13 @@
+{
+  "name": "oultra",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm --filter @oultra/web dev",
+    "build": "pnpm --filter @oultra/web build",
+    "preview": "pnpm --filter @oultra/web preview"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0"
+  }
+}

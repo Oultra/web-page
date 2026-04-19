@@ -1,0 +1,66 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SectionShell from '@/components/ui/SectionShell.astro';
+import ProductCard from '@/components/ui/ProductCard.astro';
+import CTASection from '@/components/sections/CTASection.astro';
+import { PRODUCTS } from '@/data/site';
+---
+
+<BaseLayout
+  title="Products"
+  description="Oultra builds practical AI software. AI Readiness Audit is available now — more products are in development."
+  canonical="/products"
+>
+  <!-- Page hero -->
+  <section class="pt-32 pb-16 relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <div class="absolute inset-0 bg-grid opacity-30" />
+      <div
+        class="absolute inset-0"
+        style="background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(99,102,241,0.1) 0%, transparent 60%);"
+      />
+    </div>
+    <div class="container relative text-center">
+      <span class="chip chip-blue mb-5 inline-flex">Products</span>
+      <h1 class="text-4xl md:text-5xl font-bold text-text-1 tracking-tight leading-tight mb-5 max-w-2xl mx-auto">
+        Practical tools for the AI-first web.
+      </h1>
+      <p class="text-text-2 text-lg max-w-xl mx-auto">
+        We build focused software that helps you understand and improve how AI systems interact with your content.
+      </p>
+    </div>
+  </section>
+
+  <!-- Products grid -->
+  <SectionShell>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div data-reveal>
+        <ProductCard
+          name={PRODUCTS.aiReadiness.name}
+          description={PRODUCTS.aiReadiness.tagline}
+          href={PRODUCTS.aiReadiness.slug}
+          badge="Available now"
+          status="live"
+        />
+      </div>
+      <div data-reveal data-delay="1">
+        <ProductCard
+          name="Content Intelligence"
+          description="Analyze content structure and density for AI citation performance and structured knowledge extraction."
+          href="#"
+          status="coming-soon"
+        />
+      </div>
+      <div data-reveal data-delay="2">
+        <ProductCard
+          name="Schema Builder"
+          description="Generate and validate JSON-LD schema markup for any page type, guided by audit results."
+          href="#"
+          status="coming-soon"
+        />
+      </div>
+    </div>
+  </SectionShell>
+
+  <CTASection />
+</BaseLayout>
