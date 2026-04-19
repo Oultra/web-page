@@ -100,7 +100,7 @@ export default function MobileMenu({
               animate={{ opacity: 1, x: '0%' }}
               exit={{ opacity: 0, x: '100%' }}
               transition={{ duration: 0.25, ease: [0, 0, 0.2, 1] }}
-              className="fixed top-0 right-0 bottom-0 z-50 w-72 bg-bg-1 border-l border-border flex flex-col"
+              className="fixed top-0 right-0 bottom-0 z-50 w-[min(288px,85vw)] bg-bg-1 border-l border-border flex flex-col"
             >
               <div className="flex items-center justify-between px-5 h-16 border-b border-border">
                 <a
