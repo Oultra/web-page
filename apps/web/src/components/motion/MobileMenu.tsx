@@ -1,22 +1,35 @@
 import { useState, useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
+import LangSwitcher from './LangSwitcher';
 
-const NAV_ITEMS = [
-  { label: 'Home', href: '/' },
-  { label: 'Work', href: '/company#services' },
-  { label: 'Software Development', href: '/company#services', indent: true },
-  { label: 'AI Integration', href: '/company#services', indent: true },
-  { label: 'AI Readiness Audit', href: '/products/ai-readiness', indent: true },
-  { label: 'Company', href: '/company' },
-  { label: 'Contact', href: '/contact' },
-];
+interface NavItem {
+  label: string;
+  href: string;
+  description?: string;
+  badge?: string;
+}
 
-export default function MobileMenu() {
+interface Props {
+  navItems?: NavItem[];
+  homeLabel?: string;
+  companyLabel?: string;
+  contactLabel?: string;
+  startProjectLabel?: string;
+  prefix?: string;
+}
+
+export default function MobileMenu({
+  navItems = [],
+  homeLabel = 'Home',
+  companyLabel = 'Company',
+  contactLabel = 'Contact',
+  startProjectLabel = 'Start a project',
+  prefix = '',
+}: Props) {
   const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
 
-  // Close on route change / escape
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -28,7 +41,6 @@ export default function MobileMenu() {
     return () => document.removeEventListener('keydown', onKey);
   }, []);
 
-  // Trap focus inside menu
   useEffect(() => {
     if (!open) return;
     const focusable = menuRef.current?.querySelectorAll<HTMLElement>(
@@ -37,7 +49,6 @@ export default function MobileMenu() {
     focusable?.[0]?.focus();
   }, [open]);
 
-  // Lock body scroll
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
@@ -69,7 +80,6 @@ export default function MobileMenu() {
       <AnimatePresence>
         {open && (
           <>
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -80,7 +90,6 @@ export default function MobileMenu() {
               aria-hidden="true"
             />
 
-            {/* Drawer */}
             <motion.div
               id="mobile-nav"
               ref={menuRef}
@@ -93,10 +102,9 @@ export default function MobileMenu() {
               transition={{ duration: 0.25, ease: [0, 0, 0.2, 1] }}
               className="fixed top-0 right-0 bottom-0 z-50 w-72 bg-bg-1 border-l border-border flex flex-col"
             >
-              {/* Drawer header */}
               <div className="flex items-center justify-between px-5 h-16 border-b border-border">
                 <a
-                  href="/"
+                  href={`${prefix}/`}
                   className="text-sm font-semibold text-text-1"
                   onClick={() => setOpen(false)}
                 >
@@ -113,38 +121,60 @@ export default function MobileMenu() {
                 </button>
               </div>
 
-              {/* Nav links */}
               <nav className="flex-1 px-3 py-5 overflow-y-auto">
                 <ul role="list" className="space-y-0.5">
-                  {NAV_ITEMS.map(item => (
-                    <li key={item.href}>
+                  <li>
+                    <a
+                      href={`${prefix}/`}
+                      onClick={() => setOpen(false)}
+                      className="flex items-center px-3 py-2.5 rounded-md text-sm font-medium text-text-2 hover:text-text-1 hover:bg-bg-2 transition-colors"
+                    >
+                      {homeLabel}
+                    </a>
+                  </li>
+                  {navItems.map(item => (
+                    <li key={item.href + item.label}>
                       <a
                         href={item.href}
                         onClick={() => setOpen(false)}
-                        className={`
-                          flex items-center px-3 py-2.5 rounded-md text-sm transition-colors
-                          ${item.indent ? 'pl-7 text-text-3 hover:text-text-2' : 'text-text-2 hover:text-text-1 font-medium'}
-                          hover:bg-bg-2
-                        `}
+                        className="flex items-center pl-7 pr-3 py-2.5 rounded-md text-sm text-text-3 hover:text-text-2 hover:bg-bg-2 transition-colors"
                       >
-                        {item.indent && (
-                          <span className="mr-2 text-text-3" aria-hidden="true">↳</span>
-                        )}
+                        <span className="mr-2 text-text-3" aria-hidden="true">↳</span>
                         {item.label}
                       </a>
                     </li>
                   ))}
+                  <li>
+                    <a
+                      href={`${prefix}/company`}
+                      onClick={() => setOpen(false)}
+                      className="flex items-center px-3 py-2.5 rounded-md text-sm font-medium text-text-2 hover:text-text-1 hover:bg-bg-2 transition-colors"
+                    >
+                      {companyLabel}
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href={`${prefix}/contact`}
+                      onClick={() => setOpen(false)}
+                      className="flex items-center px-3 py-2.5 rounded-md text-sm font-medium text-text-2 hover:text-text-1 hover:bg-bg-2 transition-colors"
+                    >
+                      {contactLabel}
+                    </a>
+                  </li>
                 </ul>
               </nav>
 
-              {/* CTA */}
-              <div className="p-4 border-t border-border">
+              <div className="p-4 border-t border-border space-y-3">
+                <div className="flex justify-center">
+                  <LangSwitcher />
+                </div>
                 <a
-                  href="/contact"
+                  href={`${prefix}/contact`}
                   className="flex items-center justify-center w-full gap-2 px-4 py-2.5 text-sm font-medium text-white bg-accent-1 hover:bg-blue-500 rounded-md transition-colors"
                   onClick={() => setOpen(false)}
                 >
-                  Start a project
+                  {startProjectLabel}
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                     <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>

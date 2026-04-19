@@ -2,24 +2,22 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { useTranslations } from '@/lib/i18n';
 const t = useTranslations(Astro.currentLocale);
-const canonical = Astro.currentLocale === 'es' ? '/es/privacy' : '/privacy';
 ---
 
 <BaseLayout
-  title={t.pages.privacy.title}
-  description={t.pages.privacy.description}
-  canonical={canonical}
+  title={t.pages.terms.title}
+  description={t.pages.terms.description}
+  canonical="/es/terms"
   noindex
 >
   <section class="pt-32 pb-24">
     <div class="container max-w-3xl">
       <div class="mb-12">
-        <h1 class="text-4xl font-bold text-text-1 tracking-tight mb-3">{t.privacy.heading}</h1>
-        <p class="text-sm text-text-3">{t.privacy.lastUpdated}</p>
+        <h1 class="text-4xl font-bold text-text-1 tracking-tight mb-3">{t.terms.heading}</h1>
+        <p class="text-sm text-text-3">{t.terms.lastUpdated}</p>
       </div>
-
-      <div class="prose-section space-y-10">
-        {t.privacy.sections.map(section => (
+      <div class="space-y-10">
+        {t.terms.sections.map(section => (
           <div class="border-t border-border pt-8 first:border-0 first:pt-0">
             <h2 class="text-lg font-semibold text-text-1 mb-3">{section.heading}</h2>
             <p class="text-text-2 leading-relaxed">{section.body}</p>

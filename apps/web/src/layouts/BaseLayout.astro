@@ -32,10 +32,16 @@ const schemas = [
   websiteJsonLd(),
   ...(Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : []),
 ];
+
+const locale = Astro.currentLocale ?? 'en';
+const pathname = Astro.url.pathname;
+const slug = pathname.startsWith('/es') ? pathname.slice(3) || '/' : pathname;
+const enPath = slug;
+const esPath = slug === '/' ? '/es/' : `/es${slug}`;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={locale}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -62,6 +68,11 @@ const schemas = [
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
 
+    <!-- hreflang -->
+    <link rel="alternate" hreflang="en" href={`${SITE.url}${enPath}`} />
+    <link rel="alternate" hreflang="es" href={`${SITE.url}${esPath}`} />
+    <link rel="alternate" hreflang="x-default" href={`${SITE.url}${enPath}`} />
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
@@ -71,6 +82,20 @@ const schemas = [
     ))}
   </head>
   <body>
+    <script is:inline>
+      (function () {
+        var saved = localStorage.getItem('oultra-lang');
+        if (saved) return;
+        var lang = (navigator.language || '').toLowerCase();
+        var isEs = lang.startsWith('es');
+        var onEs = location.pathname.startsWith('/es');
+        localStorage.setItem('oultra-lang', isEs ? 'es' : 'en');
+        if (isEs && !onEs) {
+          var dest = location.pathname === '/' ? '/es/' : '/es' + location.pathname;
+          location.replace(dest);
+        }
+      })();
+    </script>
     <SiteHeader />
     <main id="main">
       <slot />

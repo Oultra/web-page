@@ -1,5 +1,6 @@
 ---
-import { TRUST_STATS } from '@/data/home';
+import { useTranslations } from '@/lib/i18n';
+const t = useTranslations(Astro.currentLocale);
 ---
 
 <section class="border-y border-border bg-bg-1/50">
@@ -9,7 +10,7 @@ import { TRUST_STATS } from '@/data/home';
       role="list"
       aria-label="Product highlights"
     >
-      {TRUST_STATS.map(stat => (
+      {t.trustStats.map(stat => (
         <li class="flex flex-col items-center gap-1 text-center min-w-[80px]">
           <span class="text-2xl font-bold text-text-1 tracking-tight">{stat.value}</span>
           <span class="text-xs text-text-3 uppercase tracking-wider">{stat.label}</span>

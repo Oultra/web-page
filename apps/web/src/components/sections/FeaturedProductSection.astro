@@ -1,5 +1,8 @@
 ---
 import { PRODUCTS } from '@/data/site';
+import { useTranslations } from '@/lib/i18n';
+const t = useTranslations(Astro.currentLocale);
+const prefix = Astro.currentLocale === 'es' ? '/es' : '';
 ---
 
 <section class="py-24">
@@ -8,7 +11,6 @@ import { PRODUCTS } from '@/data/site';
       class="relative overflow-hidden bg-bg-2 border border-border rounded-2xl"
       data-reveal
     >
-      <!-- Top glow -->
       <div
         class="absolute inset-0 pointer-events-none"
         aria-hidden="true"
@@ -18,25 +20,18 @@ import { PRODUCTS } from '@/data/site';
       <div class="relative grid lg:grid-cols-2 gap-0">
         <!-- Content -->
         <div class="p-8 md:p-12 flex flex-col justify-center">
-          <div class="chip chip-cyan mb-5 inline-flex w-fit">Our tools</div>
+          <div class="chip chip-cyan mb-5 inline-flex w-fit">{t.featuredProduct.eyebrow}</div>
 
           <h2 class="text-3xl md:text-4xl font-bold text-text-1 tracking-tight leading-tight mb-4">
-            {PRODUCTS.aiReadiness.name}
+            {t.products.aiReadiness.name}
           </h2>
 
           <p class="text-text-2 text-lg leading-relaxed mb-8 max-w-md">
-            {PRODUCTS.aiReadiness.description}
+            {t.featuredProduct.description}
           </p>
 
           <ul class="space-y-3 mb-8" aria-label="What the audit covers">
-            {[
-              'Metadata & title tag quality',
-              'JSON-LD structured data coverage',
-              'Content readability and density',
-              'Performance signals',
-              'Accessibility semantics',
-              'Crawlability and sitemap health',
-            ].map(item => (
+            {t.featuredProduct.checkItems.map(item => (
               <li class="flex items-start gap-2.5 text-sm text-text-2">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="mt-0.5 shrink-0 text-success" aria-hidden="true">
                   <path d="M3 8l3.5 3.5L13 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
@@ -53,44 +48,42 @@ import { PRODUCTS } from '@/data/site';
               rel="noopener noreferrer"
               class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white bg-accent-1 hover:bg-blue-500 rounded-md transition-colors duration-fast"
             >
-              Start free audit
+              {t.featuredProduct.ctaPrimary}
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                 <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </a>
             <a
-              href={PRODUCTS.aiReadiness.slug}
+              href={`${prefix}${PRODUCTS.aiReadiness.slug}`}
               class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-text-2 bg-bg-3 border border-border hover:text-text-1 rounded-md transition-colors duration-fast"
             >
-              Learn more
+              {t.featuredProduct.ctaSecondary}
             </a>
           </div>
         </div>
 
         <!-- Preview panel -->
         <div class="border-t lg:border-t-0 lg:border-l border-border bg-bg-1/50 p-8 md:p-10 flex flex-col gap-5">
-          <p class="text-xs font-mono text-text-3 uppercase tracking-wider">Example audit result</p>
+          <p class="text-xs font-mono text-text-3 uppercase tracking-wider">{t.featuredProduct.previewLabel}</p>
 
-          <!-- Score summary -->
           <div class="flex items-center gap-4">
             <div class="flex items-center justify-center w-16 h-16 rounded-full border-4 border-accent-1/50 bg-bg-0">
               <span class="text-xl font-bold text-text-1 tabular-nums">74</span>
             </div>
             <div>
-              <p class="text-sm font-semibold text-text-1">Overall Score</p>
-              <p class="text-xs text-warning">Needs improvement</p>
+              <p class="text-sm font-semibold text-text-1">{t.featuredProduct.scoreLabel}</p>
+              <p class="text-xs text-warning">{t.featuredProduct.scoreStatus}</p>
             </div>
           </div>
 
-          <!-- Category bars -->
           <div class="space-y-3">
             {[
-              { name: 'Metadata', score: 85, color: 'bg-gradient-to-r from-success to-accent-2' },
-              { name: 'Structured Data', score: 60, color: 'bg-gradient-to-r from-accent-1 to-accent-2' },
-              { name: 'Content Quality', score: 78, color: 'bg-gradient-to-r from-accent-1 to-accent-2' },
-              { name: 'Performance', score: 71, color: 'bg-gradient-to-r from-accent-1 to-accent-2' },
-              { name: 'Accessibility', score: 82, color: 'bg-gradient-to-r from-success to-accent-2' },
-              { name: 'Crawlability', score: 65, color: 'bg-gradient-to-r from-warning to-accent-1' },
+              { name: t.auditCategories[0].name, score: 85, color: 'bg-gradient-to-r from-success to-accent-2' },
+              { name: t.auditCategories[1].name, score: 60, color: 'bg-gradient-to-r from-accent-1 to-accent-2' },
+              { name: t.auditCategories[2].name, score: 78, color: 'bg-gradient-to-r from-accent-1 to-accent-2' },
+              { name: t.auditCategories[3].name, score: 71, color: 'bg-gradient-to-r from-accent-1 to-accent-2' },
+              { name: t.auditCategories[4].name, score: 82, color: 'bg-gradient-to-r from-success to-accent-2' },
+              { name: t.auditCategories[5].name, score: 65, color: 'bg-gradient-to-r from-warning to-accent-1' },
             ].map(cat => (
               <div>
                 <div class="flex justify-between mb-1">

@@ -2,33 +2,24 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { useTranslations } from '@/lib/i18n';
 const t = useTranslations(Astro.currentLocale);
-const canonical = Astro.currentLocale === 'es' ? '/es/contact' : '/contact';
 ---
 
 <BaseLayout
   title={t.pages.contact.title}
   description={t.pages.contact.description}
-  canonical={canonical}
+  canonical="/es/contact"
 >
   <section class="pt-32 pb-20 relative overflow-hidden">
     <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
       <div class="absolute inset-0 bg-grid opacity-30" />
     </div>
-
     <div class="container relative max-w-2xl">
       <span class="chip chip-blue mb-5 inline-flex">{t.contact.eyebrow}</span>
-      <h1 class="text-4xl md:text-5xl font-bold text-text-1 tracking-tight leading-[1.05] mb-5">
-        {t.contact.headline}
-      </h1>
-      <p class="text-text-2 text-lg leading-relaxed mb-12">
-        {t.contact.description}
-      </p>
+      <h1 class="text-4xl md:text-5xl font-bold text-text-1 tracking-tight leading-[1.05] mb-5">{t.contact.headline}</h1>
+      <p class="text-text-2 text-lg leading-relaxed mb-12">{t.contact.description}</p>
 
       <div class="grid sm:grid-cols-2 gap-4 mb-12" data-reveal>
-        <a
-          href="mailto:contact@oultra.dev"
-          class="group flex items-start gap-4 p-5 bg-bg-2 border border-border hover:border-accent-1/40 rounded-xl transition-colors duration-mid"
-        >
+        <a href="mailto:contact@oultra.dev" class="group flex items-start gap-4 p-5 bg-bg-2 border border-border hover:border-accent-1/40 rounded-xl transition-colors duration-mid">
           <div class="w-10 h-10 rounded-md bg-accent-1/10 border border-accent-1/20 flex items-center justify-center shrink-0">
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" class="text-accent-1" aria-hidden="true">
               <rect x="2" y="4" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/>
@@ -40,13 +31,7 @@ const canonical = Astro.currentLocale === 'es' ? '/es/contact' : '/contact';
             <p class="text-sm text-accent-1 group-hover:text-accent-2 transition-colors duration-fast">contact@oultra.dev</p>
           </div>
         </a>
-
-        <a
-          href="https://aireadiness.oultra.dev"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="group flex items-start gap-4 p-5 bg-bg-2 border border-border hover:border-accent-2/40 rounded-xl transition-colors duration-mid"
-        >
+        <a href="https://aireadiness.oultra.dev" target="_blank" rel="noopener noreferrer" class="group flex items-start gap-4 p-5 bg-bg-2 border border-border hover:border-accent-2/40 rounded-xl transition-colors duration-mid">
           <div class="w-10 h-10 rounded-md bg-accent-2/10 border border-accent-2/20 flex items-center justify-center shrink-0">
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" class="text-accent-2" aria-hidden="true">
               <path d="M9 2a7 7 0 100 14A7 7 0 009 2zm0 0v14M2 9h14M3.5 4C4.8 6 6.8 7 9 7s4.2-1 5.5-3M3.5 14C4.8 12 6.8 11 9 11s4.2 1 5.5 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
@@ -61,55 +46,20 @@ const canonical = Astro.currentLocale === 'es' ? '/es/contact' : '/contact';
 
       <div class="bg-bg-2 border border-border rounded-xl p-6 md:p-8" data-reveal data-delay="1">
         <h2 class="text-lg font-semibold text-text-1 mb-6">{t.contact.formHeading}</h2>
-        <form
-          action="mailto:contact@oultra.dev"
-          method="POST"
-          enctype="text/plain"
-          class="space-y-4"
-          aria-label="Contact form"
-        >
+        <form action="mailto:contact@oultra.dev" method="POST" enctype="text/plain" class="space-y-4" aria-label="Contact form">
           <div>
             <label for="name" class="block text-xs font-medium text-text-3 mb-1.5">{t.contact.nameLabel}</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              required
-              autocomplete="name"
-              class="w-full bg-bg-0 border border-border focus:border-accent-1/50 rounded-md px-3 py-2.5 text-sm text-text-1 placeholder:text-text-3 outline-none transition-colors duration-fast"
-              placeholder={t.contact.namePlaceholder}
-            />
+            <input type="text" id="name" name="name" required autocomplete="name" class="w-full bg-bg-0 border border-border focus:border-accent-1/50 rounded-md px-3 py-2.5 text-sm text-text-1 placeholder:text-text-3 outline-none transition-colors duration-fast" placeholder={t.contact.namePlaceholder} />
           </div>
-
           <div>
             <label for="email" class="block text-xs font-medium text-text-3 mb-1.5">{t.contact.emailFieldLabel}</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              autocomplete="email"
-              class="w-full bg-bg-0 border border-border focus:border-accent-1/50 rounded-md px-3 py-2.5 text-sm text-text-1 placeholder:text-text-3 outline-none transition-colors duration-fast"
-              placeholder={t.contact.emailPlaceholder}
-            />
+            <input type="email" id="email" name="email" required autocomplete="email" class="w-full bg-bg-0 border border-border focus:border-accent-1/50 rounded-md px-3 py-2.5 text-sm text-text-1 placeholder:text-text-3 outline-none transition-colors duration-fast" placeholder={t.contact.emailPlaceholder} />
           </div>
-
           <div>
             <label for="message" class="block text-xs font-medium text-text-3 mb-1.5">{t.contact.messageLabel}</label>
-            <textarea
-              id="message"
-              name="message"
-              required
-              rows={5}
-              class="w-full bg-bg-0 border border-border focus:border-accent-1/50 rounded-md px-3 py-2.5 text-sm text-text-1 placeholder:text-text-3 outline-none transition-colors duration-fast resize-none"
-              placeholder={t.contact.messagePlaceholder}
-            />
+            <textarea id="message" name="message" required rows={5} class="w-full bg-bg-0 border border-border focus:border-accent-1/50 rounded-md px-3 py-2.5 text-sm text-text-1 placeholder:text-text-3 outline-none transition-colors duration-fast resize-none" placeholder={t.contact.messagePlaceholder} />
           </div>
-
-          <button
-            type="submit"
-            class="w-full flex items-center justify-center gap-2 py-2.5 text-sm font-semibold text-white bg-accent-1 hover:bg-blue-500 rounded-md transition-colors duration-fast"
-          >
+          <button type="submit" class="w-full flex items-center justify-center gap-2 py-2.5 text-sm font-semibold text-white bg-accent-1 hover:bg-blue-500 rounded-md transition-colors duration-fast">
             {t.contact.submitLabel}
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
               <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>

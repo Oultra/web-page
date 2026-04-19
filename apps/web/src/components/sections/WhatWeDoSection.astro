@@ -1,6 +1,9 @@
 ---
-import { WHAT_WE_DO } from '@/data/home';
 import SectionShell from '@/components/ui/SectionShell.astro';
+import { useTranslations } from '@/lib/i18n';
+
+const t = useTranslations(Astro.currentLocale);
+const prefix = Astro.currentLocale === 'es' ? '/es' : '';
 
 const ICONS: Record<string, string> = {
   grid: `<path d="M3 3h4v4H3V3zm6 0h4v4H9V3zm0 6h4v4H9V9zm-6 0h4v4H3V9z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>`,
@@ -10,12 +13,12 @@ const ICONS: Record<string, string> = {
 ---
 
 <SectionShell
-  eyebrow="What we do"
-  heading="Software built to last. AI that actually ships."
-  subheading="We work across the full stack — from custom applications to AI integration — and we also build and maintain our own products."
+  eyebrow={t.whatWeDo.eyebrow}
+  heading={t.whatWeDo.heading}
+  subheading={t.whatWeDo.subheading}
 >
   <div class="grid md:grid-cols-3 gap-5">
-    {WHAT_WE_DO.map((item, i) => (
+    {t.whatWeDo.cards.map((item, i) => (
       <div
         class="group bg-bg-2 border border-border rounded-xl p-6 hover:border-border-strong transition-colors duration-mid"
         data-reveal
@@ -26,9 +29,9 @@ const ICONS: Record<string, string> = {
         </div>
         <h3 class="text-base font-semibold text-text-1 mb-2">{item.title}</h3>
         <p class="text-sm text-text-2 leading-relaxed mb-3">{item.body}</p>
-        {'link' in item && item.link && (
+        {item.link && (
           <a
-            href={item.link.href}
+            href={`${prefix}${item.link.href}`}
             class="inline-flex items-center gap-1.5 text-xs font-medium text-accent-1 hover:text-accent-2 transition-colors duration-fast"
           >
             {item.link.label}

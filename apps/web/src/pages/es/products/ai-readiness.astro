@@ -6,25 +6,19 @@ import { EXAMPLE_SCORE } from '@/data/products';
 import { softwareAppJsonLd } from '@/lib/seo';
 import { useTranslations } from '@/lib/i18n';
 const t = useTranslations(Astro.currentLocale);
-const canonical = Astro.currentLocale === 'es' ? '/es/products/ai-readiness' : '/products/ai-readiness';
 ---
 
 <BaseLayout
   title={t.pages.aiReadiness.title}
   description={t.pages.aiReadiness.description}
-  canonical={canonical}
+  canonical="/es/products/ai-readiness"
   jsonLd={softwareAppJsonLd()}
 >
-  <!-- Product hero -->
   <section class="pt-32 pb-20 relative overflow-hidden">
     <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
       <div class="absolute inset-0 bg-grid opacity-30" />
-      <div
-        class="absolute inset-0"
-        style="background: radial-gradient(ellipse 60% 50% at 30% 30%, rgba(37,99,235,0.12) 0%, transparent 60%);"
-      />
+      <div class="absolute inset-0" style="background: radial-gradient(ellipse 60% 50% at 30% 30%, rgba(37,99,235,0.12) 0%, transparent 60%);" />
     </div>
-
     <div class="container relative">
       <div class="grid lg:grid-cols-2 gap-16 items-center">
         <div>
@@ -32,37 +26,20 @@ const canonical = Astro.currentLocale === 'es' ? '/es/products/ai-readiness' : '
             <span class="chip chip-blue">{t.aiReadinessPage.productBadge}</span>
             <span class="chip chip-success">{t.aiReadinessPage.availableBadge}</span>
           </div>
-
-          <h1 class="text-4xl md:text-5xl font-bold text-text-1 tracking-tight leading-[1.05] mb-5">
-            AI Readiness Audit
-          </h1>
-
-          <p class="text-text-2 text-lg leading-relaxed mb-8 max-w-lg">
-            {t.aiReadinessPage.description}
-          </p>
-
+          <h1 class="text-4xl md:text-5xl font-bold text-text-1 tracking-tight leading-[1.05] mb-5">AI Readiness Audit</h1>
+          <p class="text-text-2 text-lg leading-relaxed mb-8 max-w-lg">{t.aiReadinessPage.description}</p>
           <div class="flex flex-wrap gap-3 mb-8">
-            <a
-              href="https://aireadiness.oultra.dev"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white bg-accent-1 hover:bg-blue-500 rounded-md transition-all duration-fast shadow-[0_0_24px_rgba(37,99,235,0.35)] hover:shadow-[0_0_32px_rgba(37,99,235,0.5)] hover:-translate-y-px"
-            >
+            <a href="https://aireadiness.oultra.dev" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white bg-accent-1 hover:bg-blue-500 rounded-md transition-all duration-fast shadow-[0_0_24px_rgba(37,99,235,0.35)] hover:shadow-[0_0_32px_rgba(37,99,235,0.5)] hover:-translate-y-px">
               {t.aiReadinessPage.ctaLabel}
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
           </div>
-
           <ul class="flex flex-wrap gap-3" aria-label="Key features">
             {t.aiReadinessPage.chips.map(f => (
               <li class="chip chip-cyan">{f}</li>
             ))}
           </ul>
         </div>
-
-        <!-- URL input mockup -->
         <div class="bg-bg-2 border border-border rounded-xl overflow-hidden" data-reveal data-delay="1">
           <div class="flex items-center gap-2 px-4 py-3 border-b border-border bg-bg-1/60">
             <div class="flex gap-1.5" aria-hidden="true">
@@ -75,21 +52,12 @@ const canonical = Astro.currentLocale === 'es' ? '/es/products/ai-readiness' : '
           <div class="p-6">
             <p class="text-xs text-text-3 mb-3">{t.aiReadinessPage.urlInputHint}</p>
             <div class="flex items-center gap-2 bg-bg-0 border border-border-strong rounded-md px-3 py-2.5 mb-4">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="shrink-0 text-text-3" aria-hidden="true">
-                <path d="M7 1a6 6 0 100 12A6 6 0 007 1zm0 0v12M1 7h12M2.5 3.5C3.5 5 5 6 7 6s3.5-1 4.5-2.5M2.5 10.5C3.5 9 5 8 7 8s3.5 1 4.5 2.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
-              </svg>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="shrink-0 text-text-3" aria-hidden="true"><path d="M7 1a6 6 0 100 12A6 6 0 007 1zm0 0v12M1 7h12M2.5 3.5C3.5 5 5 6 7 6s3.5-1 4.5-2.5M2.5 10.5C3.5 9 5 8 7 8s3.5 1 4.5 2.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
               <span class="text-sm font-mono text-text-3">{t.aiReadinessPage.urlPlaceholder}</span>
             </div>
-            <a
-              href="https://aireadiness.oultra.dev"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="flex items-center justify-center gap-2 w-full py-2.5 text-sm font-semibold text-white bg-accent-1 hover:bg-blue-500 rounded-md transition-colors duration-fast"
-            >
+            <a href="https://aireadiness.oultra.dev" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 w-full py-2.5 text-sm font-semibold text-white bg-accent-1 hover:bg-blue-500 rounded-md transition-colors duration-fast">
               {t.aiReadinessPage.runAudit}
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
           </div>
         </div>
@@ -97,36 +65,22 @@ const canonical = Astro.currentLocale === 'es' ? '/es/products/ai-readiness' : '
     </div>
   </section>
 
-  <!-- What the audit checks -->
-  <SectionShell
-    eyebrow={t.aiReadinessPage.whatItChecks.eyebrow}
-    heading={t.aiReadinessPage.whatItChecks.heading}
-    subheading={t.aiReadinessPage.whatItChecks.subheading}
-  >
+  <SectionShell eyebrow={t.aiReadinessPage.whatItChecks.eyebrow} heading={t.aiReadinessPage.whatItChecks.heading} subheading={t.aiReadinessPage.whatItChecks.subheading}>
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
       {t.auditCategories.map((cat, i) => (
-        <div
-          class="bg-bg-2 border border-border rounded-xl p-5 hover:border-border-strong transition-colors duration-mid"
-          data-reveal
-          data-delay={String(Math.min(i + 1, 5)) as "1" | "2" | "3" | "4" | "5"}
-        >
+        <div class="bg-bg-2 border border-border rounded-xl p-5 hover:border-border-strong transition-colors duration-mid" data-reveal data-delay={String(Math.min(i + 1, 5)) as "1" | "2" | "3" | "4" | "5"}>
           <div class="flex items-center justify-between mb-3">
             <h3 class="text-sm font-semibold text-text-1">{cat.name}</h3>
             <span class="font-mono text-xs font-bold text-accent-2">{cat.score}</span>
           </div>
           <div class="score-bar-track mb-3">
-            <div
-              class={`score-bar-fill ${cat.score >= 80 ? 'bg-gradient-to-r from-success to-accent-2' : cat.score >= 60 ? 'bg-gradient-to-r from-accent-1 to-accent-2' : 'bg-gradient-to-r from-warning to-accent-1'}`}
-              style={`width: ${cat.score}%`}
-            />
+            <div class={`score-bar-fill ${cat.score >= 80 ? 'bg-gradient-to-r from-success to-accent-2' : cat.score >= 60 ? 'bg-gradient-to-r from-accent-1 to-accent-2' : 'bg-gradient-to-r from-warning to-accent-1'}`} style={`width: ${cat.score}%`} />
           </div>
           <p class="text-xs text-text-3 leading-relaxed mb-3">{cat.description}</p>
           <ul class="space-y-1" role="list">
             {cat.checks.map(check => (
               <li class="flex items-center gap-2 text-xs text-text-3">
-                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" class="text-accent-1 shrink-0" aria-hidden="true">
-                  <path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" class="text-accent-1 shrink-0" aria-hidden="true"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 {check}
               </li>
             ))}
@@ -136,26 +90,13 @@ const canonical = Astro.currentLocale === 'es' ? '/es/products/ai-readiness' : '
     </div>
   </SectionShell>
 
-  <!-- Example result -->
-  <SectionShell
-    eyebrow={t.aiReadinessPage.exampleResult.eyebrow}
-    heading={t.aiReadinessPage.exampleResult.heading}
-  >
+  <SectionShell eyebrow={t.aiReadinessPage.exampleResult.eyebrow} heading={t.aiReadinessPage.exampleResult.heading}>
     <div class="bg-bg-2 border border-border rounded-xl p-6 md:p-8" data-reveal>
-      <ScoreBreakdown
-        client:visible
-        total={EXAMPLE_SCORE.total}
-        categories={EXAMPLE_SCORE.categories}
-      />
+      <ScoreBreakdown client:visible total={EXAMPLE_SCORE.total} categories={EXAMPLE_SCORE.categories} />
     </div>
   </SectionShell>
 
-  <!-- Prioritized fixes -->
-  <SectionShell
-    eyebrow={t.aiReadinessPage.prioritizedFixes.eyebrow}
-    heading={t.aiReadinessPage.prioritizedFixes.heading}
-    subheading={t.aiReadinessPage.prioritizedFixes.subheading}
-  >
+  <SectionShell eyebrow={t.aiReadinessPage.prioritizedFixes.eyebrow} heading={t.aiReadinessPage.prioritizedFixes.heading} subheading={t.aiReadinessPage.prioritizedFixes.subheading}>
     <div class="space-y-4" data-reveal>
       {t.topIssues.map((issue, i) => (
         <div class="flex items-start gap-4 p-5 bg-bg-2 border border-border rounded-xl hover:border-border-strong transition-colors duration-mid">
@@ -176,57 +117,32 @@ const canonical = Astro.currentLocale === 'es' ? '/es/products/ai-readiness' : '
     </div>
   </SectionShell>
 
-  <!-- FAQ -->
-  <SectionShell
-    eyebrow={t.aiReadinessPage.faqSection.eyebrow}
-    heading={t.aiReadinessPage.faqSection.heading}
-    align="center"
-  >
+  <SectionShell eyebrow={t.aiReadinessPage.faqSection.eyebrow} heading={t.aiReadinessPage.faqSection.heading} align="center">
     <div class="max-w-2xl mx-auto space-y-2" data-reveal>
       {t.faq.map(item => (
         <details class="group bg-bg-2 border border-border rounded-xl overflow-hidden">
           <summary class="flex items-center justify-between gap-4 px-5 py-4 cursor-pointer text-sm font-medium text-text-1 hover:bg-bg-3 transition-colors duration-fast list-none">
             {item.question}
-            <svg
-              width="16" height="16" viewBox="0 0 16 16" fill="none"
-              class="shrink-0 text-text-3 transition-transform duration-fast group-open:rotate-180"
-              aria-hidden="true"
-            >
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="shrink-0 text-text-3 transition-transform duration-fast group-open:rotate-180" aria-hidden="true">
               <path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </summary>
-          <div class="px-5 pb-4 pt-1 text-sm text-text-2 leading-relaxed border-t border-border">
-            {item.answer}
-          </div>
+          <div class="px-5 pb-4 pt-1 text-sm text-text-2 leading-relaxed border-t border-border">{item.answer}</div>
         </details>
       ))}
     </div>
   </SectionShell>
 
-  <!-- CTA -->
   <section class="py-24">
     <div class="container">
       <div class="relative overflow-hidden text-center bg-bg-2 border border-border rounded-2xl py-16 px-8" data-reveal>
-        <div
-          class="absolute inset-0 pointer-events-none"
-          aria-hidden="true"
-          style="background: radial-gradient(ellipse 60% 80% at 50% 0%, rgba(37,99,235,0.15) 0%, transparent 60%);"
-        />
+        <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background: radial-gradient(ellipse 60% 80% at 50% 0%, rgba(37,99,235,0.15) 0%, transparent 60%);" />
         <div class="relative max-w-md mx-auto">
-          <h2 class="text-3xl font-bold text-text-1 tracking-tight mb-4">
-            {t.aiReadinessPage.finalCta.heading}
-          </h2>
+          <h2 class="text-3xl font-bold text-text-1 tracking-tight mb-4">{t.aiReadinessPage.finalCta.heading}</h2>
           <p class="text-text-2 mb-8">{t.aiReadinessPage.finalCta.subheading}</p>
-          <a
-            href="https://aireadiness.oultra.dev"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-semibold text-white bg-accent-1 hover:bg-blue-500 rounded-md transition-all duration-fast shadow-[0_0_28px_rgba(37,99,235,0.4)] hover:shadow-[0_0_40px_rgba(37,99,235,0.55)] hover:-translate-y-px"
-          >
+          <a href="https://aireadiness.oultra.dev" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-semibold text-white bg-accent-1 hover:bg-blue-500 rounded-md transition-all duration-fast shadow-[0_0_28px_rgba(37,99,235,0.4)] hover:shadow-[0_0_40px_rgba(37,99,235,0.55)] hover:-translate-y-px">
             {t.aiReadinessPage.finalCta.ctaLabel}
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </div>
       </div>

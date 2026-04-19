@@ -1,6 +1,8 @@
 ---
 import SectionShell from '@/components/ui/SectionShell.astro';
-import { SERVICES } from '@/data/site';
+import { useTranslations } from '@/lib/i18n';
+const t = useTranslations(Astro.currentLocale);
+const prefix = Astro.currentLocale === 'es' ? '/es' : '';
 
 const SERVICE_ICONS: Record<string, string> = {
   'software-development': `<path d="M2 10l3-6 2 4 2-2 3 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>`,
@@ -10,16 +12,15 @@ const SERVICE_ICONS: Record<string, string> = {
 ---
 
 <SectionShell
-  eyebrow="How we can help"
-  heading="Services and products."
-  subheading="We work on both sides — delivering for clients and building our own tools. Here's what you can engage us for today."
+  eyebrow={t.futureProductsRail.eyebrow}
+  heading={t.futureProductsRail.heading}
+  subheading={t.futureProductsRail.subheading}
   id="services"
 >
   <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
-    <!-- Services -->
-    {SERVICES.map((service, i) => (
+    {t.services.map((service, i) => (
       <a
-        href="/contact"
+        href={`${prefix}/contact`}
         class="group flex flex-col bg-bg-2 border border-border rounded-xl p-5 hover:border-accent-3/40 hover:-translate-y-0.5 transition-all duration-mid"
         data-reveal
         data-delay={String(i + 1) as "1" | "2" | "3"}
@@ -31,11 +32,11 @@ const SERVICE_ICONS: Record<string, string> = {
         </div>
         <div class="flex items-center justify-between mb-2">
           <span class="text-sm font-semibold text-text-1">{service.name}</span>
-          <span class="chip chip-cyan text-[10px] py-0.5 px-1.5">Service</span>
+          <span class="chip chip-cyan text-[10px] py-0.5 px-1.5">{t.futureProductsRail.serviceLabel}</span>
         </div>
         <p class="text-xs text-text-3 leading-relaxed flex-1 mb-3">{service.description}</p>
         <span class="text-xs font-medium text-accent-3 group-hover:text-accent-2 transition-colors duration-fast">
-          Get in touch →
+          {t.futureProductsRail.getInTouch}
         </span>
       </a>
     ))}
@@ -52,17 +53,17 @@ const SERVICE_ICONS: Record<string, string> = {
         </svg>
       </div>
       <div class="flex items-center justify-between mb-2">
-        <span class="text-sm font-semibold text-text-1">AI Readiness Audit</span>
-        <span class="chip chip-success text-[10px] py-0.5 px-1.5">Product</span>
+        <span class="text-sm font-semibold text-text-1">{t.products.aiReadiness.name}</span>
+        <span class="chip chip-success text-[10px] py-0.5 px-1.5">{t.futureProductsRail.productLabel}</span>
       </div>
       <p class="text-xs text-text-3 leading-relaxed flex-1 mb-3">
-        Free, instant website audit for AI visibility and crawlability. No signup needed.
+        {t.futureProductsRail.productDesc}
       </p>
       <a
-        href="/products/ai-readiness"
+        href={`${prefix}/products/ai-readiness`}
         class="text-xs font-medium text-accent-1 hover:text-accent-2 transition-colors duration-fast"
       >
-        See the product →
+        {t.futureProductsRail.productCta}
       </a>
     </div>
   </div>

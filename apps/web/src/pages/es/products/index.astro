@@ -6,30 +6,22 @@ import CTASection from '@/components/sections/CTASection.astro';
 import { PRODUCTS } from '@/data/site';
 import { useTranslations } from '@/lib/i18n';
 const t = useTranslations(Astro.currentLocale);
-const canonical = Astro.currentLocale === 'es' ? '/es/products' : '/products';
 ---
 
 <BaseLayout
   title={t.pages.products.title}
   description={t.pages.products.description}
-  canonical={canonical}
+  canonical="/es/products"
 >
   <section class="pt-32 pb-16 relative overflow-hidden">
     <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
       <div class="absolute inset-0 bg-grid opacity-30" />
-      <div
-        class="absolute inset-0"
-        style="background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(99,102,241,0.1) 0%, transparent 60%);"
-      />
+      <div class="absolute inset-0" style="background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(99,102,241,0.1) 0%, transparent 60%);" />
     </div>
     <div class="container relative text-center">
       <span class="chip chip-blue mb-5 inline-flex">{t.productsPage.eyebrow}</span>
-      <h1 class="text-4xl md:text-5xl font-bold text-text-1 tracking-tight leading-tight mb-5 max-w-2xl mx-auto">
-        {t.productsPage.headline}
-      </h1>
-      <p class="text-text-2 text-lg max-w-xl mx-auto">
-        {t.productsPage.subheading}
-      </p>
+      <h1 class="text-4xl md:text-5xl font-bold text-text-1 tracking-tight leading-tight mb-5 max-w-2xl mx-auto">{t.productsPage.headline}</h1>
+      <p class="text-text-2 text-lg max-w-xl mx-auto">{t.productsPage.subheading}</p>
     </div>
   </section>
 
@@ -39,7 +31,7 @@ const canonical = Astro.currentLocale === 'es' ? '/es/products' : '/products';
         <ProductCard
           name={t.products.aiReadiness.name}
           description={t.products.aiReadiness.tagline}
-          href={PRODUCTS.aiReadiness.slug}
+          href={`/es${PRODUCTS.aiReadiness.slug}`}
           badge={t.productsPage.availableNow}
           status="live"
         />
