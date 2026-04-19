@@ -1,5 +1,7 @@
 ---
-import HeroAuditShell from '@/components/motion/HeroAuditShell';
+import HeroAsciiBackground from '@/components/motion/HeroAsciiBackground';
+import HeroCodeRain from '@/components/motion/HeroCodeRain';
+import TextScramble from '@/components/motion/TextScramble';
 import { useTranslations } from '@/lib/i18n';
 
 const t = useTranslations(Astro.currentLocale);
@@ -9,11 +11,15 @@ const prefix = Astro.currentLocale === 'es' ? '/es' : '';
 <section class="relative min-h-[100svh] flex items-center pt-24 pb-16 overflow-hidden">
   <!-- Background -->
   <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <!-- Full-bleed ASCII background with logo animation -->
+    <HeroAsciiBackground client:load />
+
+    <!-- Radial glow — breathes slowly -->
     <div
-      class="absolute inset-0"
+      class="absolute inset-0 glow-breathe"
       style="background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(37,99,235,0.12) 0%, rgba(99,102,241,0.08) 40%, transparent 70%);"
     />
-    <div class="absolute inset-0 bg-grid opacity-40" />
+    <!-- Bottom fade -->
     <div class="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-bg-0 to-transparent" />
   </div>
 
@@ -22,6 +28,7 @@ const prefix = Astro.currentLocale === 'es' ? '/es' : '';
 
       <!-- Left: Text -->
       <div class="max-w-xl">
+        <!-- Eyebrow -->
         <div class="mb-5" data-reveal>
           <span class="chip chip-blue">
             <svg width="8" height="8" viewBox="0 0 8 8" fill="none" aria-hidden="true" class="rounded-full bg-accent-2 w-1.5 h-1.5" />
@@ -29,14 +36,22 @@ const prefix = Astro.currentLocale === 'es' ? '/es' : '';
           </span>
         </div>
 
-        <h1
+        <!-- Headline — scrambles in on load -->
+        <div
           class="text-4xl md:text-5xl xl:text-6xl font-bold text-text-1 tracking-tight leading-[1.05] mb-6"
           data-reveal
           data-delay="1"
         >
-          {t.hero.headline}
-        </h1>
+          <TextScramble
+            client:load
+            text={t.hero.headline}
+            tag="h1"
+            className="text-4xl md:text-5xl xl:text-6xl font-bold text-text-1 tracking-tight leading-[1.05] m-0"
+            startDelay={400}
+          />
+        </div>
 
+        <!-- Subheadline -->
         <p
           class="text-lg text-text-2 leading-relaxed mb-8 max-w-lg"
           data-reveal
@@ -45,6 +60,7 @@ const prefix = Astro.currentLocale === 'es' ? '/es' : '';
           {t.hero.subheadline}
         </p>
 
+        <!-- CTAs -->
         <div class="flex flex-wrap gap-3 mb-6" data-reveal data-delay="3">
           <a
             href={`${prefix}/contact`}
@@ -63,6 +79,7 @@ const prefix = Astro.currentLocale === 'es' ? '/es' : '';
           </a>
         </div>
 
+        <!-- Credibility hint -->
         <p class="text-xs text-text-3" data-reveal data-delay="4">
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none" class="inline mr-1.5 text-success" aria-hidden="true">
             <circle cx="6" cy="6" r="5" fill="currentColor" opacity="0.2"/>
@@ -72,9 +89,9 @@ const prefix = Astro.currentLocale === 'es' ? '/es' : '';
         </p>
       </div>
 
-      <!-- Right: Audit shell -->
-      <div class="relative flex justify-center lg:justify-end" data-reveal data-delay="2">
-        <HeroAuditShell client:load />
+      <!-- Right: code rain -->
+      <div class="relative hidden lg:flex justify-end items-center" data-reveal data-delay="2">
+        <HeroCodeRain client:load />
       </div>
 
     </div>

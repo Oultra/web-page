@@ -292,3 +292,36 @@ svg {
   border-color: rgba(239, 68, 68, 0.3);
   color: #fca5a5;
 }
+
+/* ---- Ambient animations ---- */
+
+@keyframes scanline {
+  0%   { transform: translateY(-8px); opacity: 0; }
+  3%   { opacity: 1; }
+  97%  { opacity: 1; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+.scanline-sweep {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(37,99,235,0.5) 30%, rgba(6,182,212,0.4) 70%, transparent 100%);
+  animation: scanline 7s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes glow-breathe {
+  0%, 100% { opacity: 0.55; }
+  50%       { opacity: 1; }
+}
+
+.glow-breathe {
+  animation: glow-breathe 8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scanline-sweep { animation: none; opacity: 0; }
+  .glow-breathe   { animation: none; opacity: 1; }
+}
