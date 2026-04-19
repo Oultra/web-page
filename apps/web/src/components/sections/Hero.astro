@@ -1,6 +1,6 @@
 ---
 import HeroAsciiBackground from '@/components/motion/HeroAsciiBackground';
-import HeroCodeRain from '@/components/motion/HeroCodeRain';
+import HeroAIPanel from '@/components/motion/HeroAIPanel';
 import TextScramble from '@/components/motion/TextScramble';
 import { useTranslations } from '@/lib/i18n';
 
@@ -89,9 +89,9 @@ const prefix = Astro.currentLocale === 'es' ? '/es' : '';
         </p>
       </div>
 
-      <!-- Right: code rain -->
+      <!-- Right: AI panel (cycles pipeline → stream → neural) -->
       <div class="relative hidden lg:flex justify-end items-center" data-reveal data-delay="2">
-        <HeroCodeRain client:load />
+        <HeroAIPanel client:load />
       </div>
 
     </div>
